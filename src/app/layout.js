@@ -1,4 +1,19 @@
 import './globals.css'
+import { Montserrat } from 'next/font/google'
+import { GeneralContextProvider } from '../context/General'
+import localFont from 'next/font/local'
+
+const monsterrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-monsterrat',
+  weights: [300, 400, 500, 600, 700],
+})
+
+const monument = localFont({
+  src: [{ path: '../../public/fonts/MonumentExtended-Regular.otf', format: 'opentype' },
+  ],
+  variable: '--font-monument',
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -8,7 +23,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${monument.variable} ${monsterrat.variable}`}>
+        <GeneralContextProvider>
+          {children}
+        </GeneralContextProvider>
+      </body>
     </html>
   )
 }
